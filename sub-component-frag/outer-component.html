@@ -1,0 +1,46 @@
+<script src="sub-component.js"></script>
+<script>
+(function() {
+  'use strict';
+  customElements.define('outer-component', class extends HTMLElement {
+    constructor() {
+      console.log('Subcomponent test: FRAGMENT');
+      super(); // always always
+      console.log('outer-el `constructor` called');
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      let frag = document.createDocumentFragment();
+      let div = document.createElement('div');
+      div.setAttribute('id', 'outer-component__div');
+      let sub = document.createElement('sub-component');
+      sub.isCool = true;
+      console.log(sub.isCool);
+      div.appendChild(sub);
+      frag.appendChild(div);
+      shadowRoot.appendChild(frag);
+    }
+    connectedCallback() {
+      console.log('outer-el `connectedCallback` called');
+      console.log('outer hello attr:', this.getAttribute('hello'));
+      console.log('inner hello attr:', this.shadowRoot.querySelector('sub-component').isCool);
+    }
+    static get observedAttributes() {
+      console.log('observedAttributes');
+      return ['hello'];
+    }
+    get hello() {
+      console.log('get hello: outer');
+      return this.getAttribute('hello');
+    }
+    set hello(val) {
+      console.log('SET hello: outer');
+      if (val) {
+        this._hello = val;
+        this.shadowRoot.querySelector('sub-component').isCool = false;
+      } else this.removeAttribute('hello');
+    }
+    attributeChangedCallback(name, oldVal, newVal) {
+      this.hello = newVal;
+    }
+  });
+}());
+</script>

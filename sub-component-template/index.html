@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sub Component</title>
+    <link rel="import" href="outer-component.html">
+  </head>
+  <body>
+    <outer-component></outer-component>
+  </body>
+  <script>
+  customElements.whenDefined('outer-component').then(() => {
+    console.log('outer-component defined');
+  });
+  customElements.whenDefined('sub-component').then(() => {
+    console.log('sub-component defined');
+  });
+  </script>
+</html>

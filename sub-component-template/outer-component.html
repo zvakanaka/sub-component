@@ -1,0 +1,34 @@
+<script src="sub-component.js"></script>
+<template id="outer-component-template">
+  <div id="sub-component__div">
+    <sub-component is-cool="false"></sub-component>
+  </div>
+</template>
+<script>
+(function() {
+  'use strict';
+  let querySelector = function(selector) {
+    //currentScript is this ^ script tag, and the owner is this document around it
+    let script = document._currentScript || document.currentScript;
+    //ownerDocument is this entire file
+    return script ? script.ownerDocument.querySelector(selector) : document.querySelector(selector);
+  };
+  const template = querySelector('template#outer-component-template');
+  customElements.define('outer-component', class extends HTMLElement {
+    constructor() {
+      super(); // always always
+      console.log('outer-el `constructor` called');
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      const instance = template.content.cloneNode(true);
+      shadowRoot.appendChild(instance);
+      let htmlSub = shadowRoot.querySelector('sub-component');
+      // htmlSub.isCool = true;
+      console.log(htmlSub.isCool);
+    }
+    connectedCallback() {
+      console.log('outer-el `connectedCallback` called');
+      // let sub = this.shadowRoot.querySelector('sub-component');
+    }
+  });
+}());
+</script>
