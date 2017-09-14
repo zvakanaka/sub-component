@@ -1,0 +1,10 @@
+:root { --console-background: black ;}
+pre { color: white; background-color: var(--console-background, black); }
+pre+pre, pre:nth-child(1) { margin: 0; }
+div[id^='console-output'], #example-code {
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  padding: 1em;
+  background: var(--console-background, black);
+}

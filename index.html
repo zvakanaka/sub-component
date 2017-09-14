@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sub Component</title>
+    <link rel="stylesheet" href="/main.css">
+    <script src="/console.js"></script>
+    <script type="text/javascript">let CURRENT_SELECTOR = null;</script>
+    <link rel="import" href="outer-el-frag.html">
+    <link rel="import" href="outer-el-shadow.html">
+    <link rel="import" href="outer-el-template.html">
+  </head>
+  <body>
+    The following code should set each component's child component's property, <code>isCool</code>, to false.
+    <pre id="example-code"><code>&lt;outer-el-frag hello="world"&gt;&lt;/outer-el-frag&gt;</code></pre>
+    Console output:
+    <div id="console-output">
+<!-- output of console.log inserted here by override in console.js -->
+    </div>
+    <outer-el-frag hello="world"></outer-el-frag>
+
+    <pre id="example-code"><code>&lt;outer-el-template hello="world"&gt;&lt;/outer-el-template&gt;</code></pre>
+    <script type="text/javascript">CURRENT_SELECTOR = '#console-output-2';</script>
+    Console output:
+    <div id="console-output-2">
+<!-- output of console.log inserted here by override in console.js -->
+    </div>
+    <outer-el-template hello="world"></outer-el-template>
+
+    <pre id="example-code"><code>&lt;outer-el-shadow hello="world"&gt;&lt;/outer-el-shadow&gt;</code></pre>
+    <script type="text/javascript">CURRENT_SELECTOR = '#console-output-3';</script>
+    Console output:
+    <div id="console-output-3">
+<!-- output of console.log inserted here by override in console.js -->
+    </div>
+    <outer-el-shadow hello="world"></outer-el-shadow>
+  </body>
+</html>

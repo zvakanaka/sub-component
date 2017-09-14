@@ -1,5 +1,4 @@
-<script src="sub-component.js"></script>
-<template id="outer-component-template">
+<template id="outer-el-template">
   <div id="sub-component__div">
     <sub-component is-cool="false"></sub-component>
   </div>
@@ -13,9 +12,10 @@
     //ownerDocument is this entire file
     return script ? script.ownerDocument.querySelector(selector) : document.querySelector(selector);
   };
-  const template = querySelector('template#outer-component-template');
-  customElements.define('outer-component', class extends HTMLElement {
+  const template = querySelector('template#outer-el-template');
+  customElements.define('outer-el-template', class extends HTMLElement {
     constructor() {
+      console.log('Subcomponent test: TEMPLATE');
       super(); // always always
       console.log('outer-el `constructor` called');
       let shadowRoot = this.attachShadow({mode: 'open'});
@@ -27,7 +27,25 @@
     }
     connectedCallback() {
       console.log('outer-el `connectedCallback` called');
-      // let sub = this.shadowRoot.querySelector('sub-component');
+      console.log('outer hello attr:', this.getAttribute('hello'));
+      console.log('inner hello attr:', this.shadowRoot.querySelector('sub-component').isCool);
+    }
+    static get observedAttributes() {
+      return ['hello'];
+    }
+    get hello() {
+      console.log('get hello: outer');
+      return this.getAttribute('hello');
+    }
+    set hello(val) {
+      console.log('SET hello: outer');
+      if (val) {
+        this._hello = val;
+        this.shadowRoot.querySelector('sub-component').isCool = false;
+      } else this.removeAttribute('hello');
+    }
+    attributeChangedCallback(name, oldVal, newVal) {
+      this.hello = newVal;
     }
   });
 }());

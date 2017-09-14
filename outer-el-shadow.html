@@ -1,0 +1,42 @@
+<script>
+(function() {
+  'use strict';
+  customElements.define('outer-el-shadow', class extends HTMLElement {
+    constructor() {
+      console.log('Subcomponent test: SHADOW');
+      super(); // always always
+      console.log('outer-el `constructor` called');
+      let shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.innerHTML = `
+        <div id="outer-component__div">
+          <sub-component></sub-component>
+        </div>
+      `;
+      let htmlSub = shadowRoot.querySelector('sub-component');
+      htmlSub.isCool = true;
+      console.log(htmlSub.isCool);
+    }
+    connectedCallback() {
+      console.log('outer-el `connectedCallback` called');
+      console.log('outer hello attr:', this.getAttribute('hello'));
+      console.log('inner hello attr:', this.shadowRoot.querySelector('sub-component').isCool);
+    }
+    static get observedAttributes() {
+      return ['hello'];
+    }
+    get hello() {
+      return this.getAttribute('hello');
+    }
+    set hello(val) {
+      console.log('SET hello: outer');
+      if (val) {
+        this._hello = val;
+        this.shadowRoot.querySelector('sub-component').isCool = false;
+      } else this.removeAttribute('hello');
+    }
+    attributeChangedCallback(name, oldVal, newVal) {
+      this.hello = newVal;
+    }
+  });
+}());
+</script>
