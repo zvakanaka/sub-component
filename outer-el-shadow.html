@@ -12,14 +12,9 @@
           <sub-component></sub-component>
         </div>
       `;
-      let htmlSub = shadowRoot.querySelector('sub-component');
-      htmlSub.helloUpper = 'waiting';
-      // console.log(htmlSub.helloUpper);
     }
     connectedCallback() {
       console.log('outer-el `connectedCallback` called');
-      // console.log('outer hello attr:', this.getAttribute('hello'));
-      // console.log('inner hello attr:', this.shadowRoot.querySelector('sub-component').helloUpper);
     }
     static get observedAttributes() {
       return ['hello'];
@@ -28,7 +23,6 @@
       return this.getAttribute('hello');
     }
     set hello(val) {
-      // console.log('SET hello: outer');
       if (val) {
         this._hello = val;
         this.shadowRoot.querySelector('sub-component').helloUpper = val;

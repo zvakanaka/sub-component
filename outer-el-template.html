@@ -1,6 +1,6 @@
 <template id="outer-el-template">
   <div id="sub-component__div">
-    <sub-component is-cool="false"></sub-component>
+    <sub-component></sub-component>
   </div>
 </template>
 <script>
@@ -19,26 +19,21 @@
       super(); // always always
       console.log('outer-el `constructor` called');
       let shadowRoot = this.attachShadow({mode: 'open'});
-      const instance = template.content.cloneNode('waiting');
+      const instance = template.content.cloneNode(true);
       shadowRoot.appendChild(instance);
       let htmlSub = shadowRoot.querySelector('sub-component');
-      // htmlSub.helloUpper = 'waiting';
-      // console.log(htmlSub.helloUpper);
+      htmlSub.helloUpper = this.getAttribute('hello');
     }
     connectedCallback() {
       console.log('outer-el `connectedCallback` called');
-      // console.log('outer hello attr:', this.getAttribute('hello'));
-      // console.log('inner hello attr:', this.shadowRoot.querySelector('sub-component').helloUpper);
     }
     static get observedAttributes() {
       return ['hello'];
     }
     get hello() {
-      // console.log('get hello: outer');
       return this.getAttribute('hello');
     }
     set hello(val) {
-      // console.log('SET hello: outer');
       if (val) {
         this._hello = val;
         this.shadowRoot.querySelector('sub-component').helloUpper = val;

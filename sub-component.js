@@ -7,10 +7,11 @@
       let shadowRoot = this.attachShadow({mode: 'open'});
       shadowRoot.innerHTML = `
         <style>
-          :host div { background-color: var(--background-color, white); color: var(--color, black); }
-          sub-component div { background-color: var(--background-color, white); color: var(--color, black); }
+          :host div { background-color: var(--background-color, tan); color: var(--color, blue); width: fit-content; }
+          sub-component div { background-color: var(--background-color, tan); color: var(--color, blue); width: fit-content; }
         </style>
         <div id="sub-component__div">
+        helloUpper:
         </div>
       `;
     }
@@ -24,7 +25,7 @@
     set helloUpper(val) {
       console.log('SET helloUpper: inner', this._helloUpper);
       this._helloUpper = val.toUpperCase();
-      this.shadowRoot.querySelector('#sub-component__div').textContent = this._helloUpper;
+      this.shadowRoot.querySelector('#sub-component__div').textContent = `helloUpper: ${this._helloUpper}`;
     }
   });
 }());

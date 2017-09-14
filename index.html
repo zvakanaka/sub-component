@@ -11,7 +11,7 @@
     <link rel="import" href="outer-el-template.html">
   </head>
   <body>
-    The following code should set each component's child component's property, <code>helloUpper</code>, to false.
+    The following code should set each component's child component's property, <code>helloUpper</code>, to an uppercase value.
     <pre id="example-code"><code>&lt;outer-el-frag hello="world"&gt;&lt;/outer-el-frag&gt;</code></pre>
     Console output:
     <div id="console-output">
@@ -36,7 +36,9 @@
     <outer-el-shadow hello="world"></outer-el-shadow>
 
     Dynamically creating outer-el-template with <code>document.createElement</code>
-    <pre id="example-code"><code>&lt;outer-el-template hello="world"&gt;&lt;/outer-el-template&gt;</code></pre>
+    <pre id="example-code"><code>let el = document.createElement('outer-el-template');
+el.setAttribute('hello', 'world');
+document.body.appendChild(el);</code></pre>
     <script type="text/javascript">CURRENT_SELECTOR = '#console-output-4';</script>
     Console output:
     <div id="console-output-4">
@@ -49,7 +51,9 @@
     </script>
 
     Dynamically creating outer-el-frag with <code>document.createElement</code>
-    <pre id="example-code"><code>&lt;outer-el-frag hello="world"&gt;&lt;/outer-el-frag&gt;</code></pre>
+    <pre id="example-code"><code>let el = document.createElement('outer-el-frag');
+el.setAttribute('hello', 'world');
+document.body.appendChild(el);</code></pre>
     <script type="text/javascript">CURRENT_SELECTOR = '#console-output-5';</script>
     Console output:
     <div id="console-output-5">
@@ -62,7 +66,9 @@
     </script>
 
     Dynamically creating outer-el-shadow with <code>document.createElement</code>
-    <pre id="example-code"><code>&lt;outer-el-shadow hello="world"&gt;&lt;/outer-el-shadow&gt;</code></pre>
+    <pre id="example-code"><code>let el = document.createElement('outer-el-shadow');
+el.setAttribute('hello', 'world');
+document.body.appendChild(el);</code></pre>
     <script type="text/javascript">CURRENT_SELECTOR = '#console-output-6';</script>
     Console output:
     <div id="console-output-6">
