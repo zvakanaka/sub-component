@@ -24,7 +24,6 @@
       console.log('inner hello attr:', this.shadowRoot.querySelector('sub-component').isCool);
     }
     static get observedAttributes() {
-      console.log('observedAttributes');
       return ['hello'];
     }
     get hello() {
