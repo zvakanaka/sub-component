@@ -17,14 +17,14 @@
     connectedCallback() {
       console.log('inner-el `connectedCallback` called');
     }
-    get isCool() {
-      console.log('GET ISCOOL: inner');
-      return this._isCool;
+    get helloUpper() {
+      console.log('GET helloUpper: inner', this._helloUpper);
+      return this._helloUpper;
     }
-    set isCool(val) {
-      console.log('SET ISCOOL: inner');
-      this._isCool = val;
-      this.shadowRoot.querySelector('#sub-component__div').textContent = this._isCool;
+    set helloUpper(val) {
+      console.log('SET helloUpper: inner', this._helloUpper);
+      this._helloUpper = val.toUpperCase();
+      this.shadowRoot.querySelector('#sub-component__div').textContent = this._helloUpper;
     }
   });
 }());

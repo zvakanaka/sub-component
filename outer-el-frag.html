@@ -12,29 +12,29 @@
       let div = document.createElement('div');
       div.setAttribute('id', 'outer-component__div');
       let sub = document.createElement('sub-component');
-      sub.isCool = true;
-      console.log(sub.isCool);
+      sub.helloUpper = 'waiting';
+      // console.log(sub.helloUpper);
       div.appendChild(sub);
       frag.appendChild(div);
       shadowRoot.appendChild(frag);
     }
     connectedCallback() {
       console.log('outer-el `connectedCallback` called');
-      console.log('outer hello attr:', this.getAttribute('hello'));
-      console.log('inner hello attr:', this.shadowRoot.querySelector('sub-component').isCool);
+      // console.log('outer hello attr:', this.getAttribute('hello'));
+      // console.log('inner hello attr:', this.shadowRoot.querySelector('sub-component').helloUpper);
     }
     static get observedAttributes() {
       return ['hello'];
     }
     get hello() {
-      console.log('get hello: outer');
+      // console.log('get hello: outer');
       return this.getAttribute('hello');
     }
     set hello(val) {
-      console.log('SET hello: outer');
+      // console.log('SET hello: outer');
       if (val) {
         this._hello = val;
-        this.shadowRoot.querySelector('sub-component').isCool = false;
+        this.shadowRoot.querySelector('sub-component').helloUpper = val;
       } else this.removeAttribute('hello');
     }
     attributeChangedCallback(name, oldVal, newVal) {

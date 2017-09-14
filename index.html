@@ -11,7 +11,7 @@
     <link rel="import" href="outer-el-template.html">
   </head>
   <body>
-    The following code should set each component's child component's property, <code>isCool</code>, to false.
+    The following code should set each component's child component's property, <code>helloUpper</code>, to false.
     <pre id="example-code"><code>&lt;outer-el-frag hello="world"&gt;&lt;/outer-el-frag&gt;</code></pre>
     Console output:
     <div id="console-output">
@@ -34,5 +34,44 @@
 <!-- output of console.log inserted here by override in console.js -->
     </div>
     <outer-el-shadow hello="world"></outer-el-shadow>
+
+    Dynamically creating outer-el-template with <code>document.createElement</code>
+    <pre id="example-code"><code>&lt;outer-el-template hello="world"&gt;&lt;/outer-el-template&gt;</code></pre>
+    <script type="text/javascript">CURRENT_SELECTOR = '#console-output-4';</script>
+    Console output:
+    <div id="console-output-4">
+<!-- output of console.log inserted here by override in console.js -->
+    </div>
+    <script type="text/javascript">
+      let outerElTemplate = document.createElement('outer-el-template');
+      outerElTemplate.setAttribute('hello', 'world');
+      document.body.appendChild(outerElTemplate);
+    </script>
+
+    Dynamically creating outer-el-frag with <code>document.createElement</code>
+    <pre id="example-code"><code>&lt;outer-el-frag hello="world"&gt;&lt;/outer-el-frag&gt;</code></pre>
+    <script type="text/javascript">CURRENT_SELECTOR = '#console-output-5';</script>
+    Console output:
+    <div id="console-output-5">
+<!-- output of console.log inserted here by override in console.js -->
+    </div>
+    <script type="text/javascript">
+      let outerElFrag = document.createElement('outer-el-frag');
+      outerElFrag.setAttribute('hello', 'world');
+      document.body.appendChild(outerElFrag);
+    </script>
+
+    Dynamically creating outer-el-shadow with <code>document.createElement</code>
+    <pre id="example-code"><code>&lt;outer-el-shadow hello="world"&gt;&lt;/outer-el-shadow&gt;</code></pre>
+    <script type="text/javascript">CURRENT_SELECTOR = '#console-output-6';</script>
+    Console output:
+    <div id="console-output-6">
+<!-- output of console.log inserted here by override in console.js -->
+    </div>
+    <script type="text/javascript">
+      let outerElShadow = document.createElement('outer-el-shadow');
+      outerElShadow.setAttribute('hello', 'world');
+      document.body.appendChild(outerElShadow);
+    </script>
   </body>
 </html>
