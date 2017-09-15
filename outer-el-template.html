@@ -35,7 +35,9 @@
     set hello(val) {
       if (val) {
         this._hello = val;
-        this.instance.querySelector('sub-component').helloUpper = val;
+        customElements.whenDefined('sub-component').then(() => {
+          this.shadowRoot.querySelector('sub-component').helloUpper = val;
+        });
       } else this.removeAttribute('hello');
     }
     attributeChangedCallback(name, oldVal, newVal) {

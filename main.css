@@ -8,3 +8,5 @@ div[id^='console-output'], #example-code {
   padding: 1em;
   background: var(--console-background, black);
 }
+.border { border: solid 1px black; padding: 1em; margin: 1em;}
+h1,h2,h3 { margin: 0;}

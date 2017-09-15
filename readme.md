@@ -3,5 +3,3 @@
 * Template
 * Document Fragment (appended to shadowRoot)
 * ShadowRoot InnerHTML
-
-Template seems to be the only one causing trouble.
