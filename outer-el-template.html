@@ -19,10 +19,9 @@
       super(); // always always
       console.log('outer-el `constructor` called');
       let shadowRoot = this.attachShadow({mode: 'open'});
-      const instance = template.content.cloneNode(true);
-      shadowRoot.appendChild(instance);
-      let htmlSub = shadowRoot.querySelector('sub-component');
-      htmlSub.helloUpper = this.getAttribute('hello');
+      this.instance = template.content.cloneNode(true);
+      shadowRoot.appendChild(this.instance);
+      let sub = this.instance.querySelector('sub-component');
     }
     connectedCallback() {
       console.log('outer-el `connectedCallback` called');
@@ -36,7 +35,7 @@
     set hello(val) {
       if (val) {
         this._hello = val;
-        this.shadowRoot.querySelector('sub-component').helloUpper = val;
+        this.instance.querySelector('sub-component').helloUpper = val;
       } else this.removeAttribute('hello');
     }
     attributeChangedCallback(name, oldVal, newVal) {
