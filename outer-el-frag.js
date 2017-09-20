@@ -1,5 +1,3 @@
-<script src="sub-component.js"></script>
-<script>
 (function() {
   'use strict';
   customElements.define('outer-el-frag', class extends HTMLElement {
@@ -8,16 +6,17 @@
       super(); // always always
       console.log('outer-el `constructor` called');
       let shadowRoot = this.attachShadow({mode: 'open'});
+    }
+    connectedCallback() {
+      console.log('outer-el `connectedCallback` called');
       let frag = document.createDocumentFragment();
       let div = document.createElement('div');
       div.setAttribute('id', 'outer-component__div');
       let sub = document.createElement('sub-component');
       div.appendChild(sub);
       frag.appendChild(div);
-      shadowRoot.appendChild(frag);
-    }
-    connectedCallback() {
-      console.log('outer-el `connectedCallback` called');
+      this.shadowRoot.appendChild(frag);
+      this.shadowRoot.querySelector('sub-component').helloUpper = this._hello;
     }
     static get observedAttributes() {
       return ['hello'];
@@ -28,7 +27,6 @@
     set hello(val) {
       if (val) {
         this._hello = val;
-        this.shadowRoot.querySelector('sub-component').helloUpper = val;
       } else this.removeAttribute('hello');
     }
     attributeChangedCallback(name, oldVal, newVal) {
@@ -36,4 +34,3 @@
     }
   });
 }());
-</script>

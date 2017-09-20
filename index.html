@@ -5,10 +5,11 @@
     <title>Sub Component</title>
     <link rel="stylesheet" href="./main.css">
     <script src="./console.js"></script>
+    <script src="sub-component.js"></script>
     <script type="text/javascript">let CURRENT_SELECTOR = null;</script>
     <link rel="import" href="outer-el-template.html">
-    <link rel="import" href="outer-el-frag.html">
-    <link rel="import" href="outer-el-shadow.html">
+    <script src="outer-el-frag.js"></script>
+    <script src="outer-el-shadow.js"></script>
   </head>
   <body>
     The following code should set each component's child component's property, <code>helloUpper</code>, to an uppercase value.
@@ -35,6 +36,7 @@
       <script type="text/javascript">CURRENT_SELECTOR = '#console-output-2';</script>
       <h3>Console Output</h3>
       <div id="console-output-2"><!-- output of console.log inserted here by override in console.js --></div>
+      <h3>Element</h3>
       <outer-el-frag hello="world"></outer-el-frag>
     </div>
 
@@ -44,6 +46,7 @@
       <script type="text/javascript">CURRENT_SELECTOR = '#console-output-3';</script>
       <h3>Console Output</h3>
       <div id="console-output-3"><!-- output of console.log inserted here by override in console.js --></div>
+      <h3>Element</h3>
       <outer-el-shadow hello="world"></outer-el-shadow>
     </div>
 
@@ -57,6 +60,7 @@ document.body.appendChild(el);</code></pre>
       <script type="text/javascript">CURRENT_SELECTOR = '#console-output-4';</script>
       <h3>Console Output</h3>
       <div id="console-output-4"><!-- output of console.log inserted here by override in console.js --></div>
+      <h3>Element</h3>
       <script type="text/javascript">
         let outerElTemplate = document.createElement('outer-el-template');
         outerElTemplate.setAttribute('hello', 'world');
@@ -72,6 +76,7 @@ document.body.appendChild(el);</code></pre>
       <script type="text/javascript">CURRENT_SELECTOR = '#console-output-5';</script>
       <h3>Console Output</h3>
       <div id="console-output-5"><!-- output of console.log inserted here by override in console.js --></div>
+      <h3>Element</h3>
       <script type="text/javascript">
         let outerElFrag = document.createElement('outer-el-frag');
         outerElFrag.setAttribute('hello', 'world');
@@ -87,6 +92,7 @@ document.body.appendChild(el);</code></pre>
       <script type="text/javascript">CURRENT_SELECTOR = '#console-output-6';</script>
       <h3>Console Output</h3>
       <div id="console-output-6"><!-- output of console.log inserted here by override in console.js --></div>
+      <h3>Element</h3>
       <script type="text/javascript">
         let outerElShadow = document.createElement('outer-el-shadow');
         outerElShadow.setAttribute('hello', 'world');

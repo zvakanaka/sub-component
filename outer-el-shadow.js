@@ -1,4 +1,3 @@
-<script>
 (function() {
   'use strict';
   customElements.define('outer-el-shadow', class extends HTMLElement {
@@ -7,14 +6,20 @@
       super(); // always always
       console.log('outer-el `constructor` called');
       let shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.innerHTML = `
+      // shadowRoot.innerHTML = `
+      //   <div id="outer-component__div">
+      //     <sub-component></sub-component>
+      //   </div>
+      // `;
+    }
+    connectedCallback() {
+      console.log('outer-el `connectedCallback` called');
+      this.shadowRoot.innerHTML = `
         <div id="outer-component__div">
           <sub-component></sub-component>
         </div>
       `;
-    }
-    connectedCallback() {
-      console.log('outer-el `connectedCallback` called');
+      this.shadowRoot.querySelector('sub-component').helloUpper = this._hello;
     }
     static get observedAttributes() {
       return ['hello'];
@@ -25,7 +30,6 @@
     set hello(val) {
       if (val) {
         this._hello = val;
-        this.shadowRoot.querySelector('sub-component').helloUpper = val;
       } else this.removeAttribute('hello');
     }
     attributeChangedCallback(name, oldVal, newVal) {
@@ -33,4 +37,3 @@
     }
   });
 }());
-</script>
