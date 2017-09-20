@@ -6,11 +6,6 @@
       super(); // always always
       console.log('outer-el `constructor` called');
       let shadowRoot = this.attachShadow({mode: 'open'});
-      // shadowRoot.innerHTML = `
-      //   <div id="outer-component__div">
-      //     <sub-component></sub-component>
-      //   </div>
-      // `;
     }
     connectedCallback() {
       console.log('outer-el `connectedCallback` called');
